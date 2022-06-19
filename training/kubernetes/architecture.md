@@ -8,7 +8,12 @@ A Kubernetes cluster is composed of a set of nodes, which are physical or virtua
 **Master node:**  A node from the control plane, that has installed components to make global, cluster-level decisions.
 **Worker node:** A node that has installed components to host workloads (pods).
 Every cluster should have at least 1 worker node. 
+
+
 ![Kubernetes Architecture](image.png)
+
+
+
 
 ## Control Plane Components
 The container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers. The control plane manages the worker nodes and the pods in the cluster.
@@ -24,3 +29,5 @@ Some of these controllers is node controller (responsible for noticing and respo
 - **Kubelet:** The agent that runs on every node and notifies the kube- apiserver that this node is part of the cluster. It makes sure that containers are running in a Pod.
 - **Kube-proxy:** A network proxy that ensures the reachability and accessibility of workloads places on this specific node. 
 To ensure maximum security, kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster. kube-proxy uses the operating system packet filtering layer if there is one and it's available. Otherwise, kube-proxy forwards the traffic itself.
+
+*Kubernetes official website: [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/)*
