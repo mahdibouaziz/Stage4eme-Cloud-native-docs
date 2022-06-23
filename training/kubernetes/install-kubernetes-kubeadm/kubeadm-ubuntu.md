@@ -264,7 +264,7 @@ justk8s-worker2   Ready      <none>                 2m3s   v1.23.1
 
 
 
-##### References:
+#### References:
 *Kubernetes Documentation: [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)*
 
 *Calico Documentation: [Install Calico Networking for on-premises deployments](https://projectcalico.docs.tigera.io/getting-started/kubernetes/self-managed-onprem/onpremises)*
