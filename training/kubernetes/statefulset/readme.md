@@ -96,7 +96,8 @@ web-qdn7w   1/1     Running             0          25m
 web-wslvk   1/1     Running             0          25m
 ```
 The pod is being terminated by the ReplicaSet because the controller has more pods than it was configured to handle. So, it is killing the excess one.
-![Creating pod after statefulset](images/create-pod-after-statefulset.png)
+
+<img src="images/create-pod-after-statefulset.png" style="width:900px">
 
 #### Create the Pod Before the ReplicaSet
 Lets assume that we don't have any ReplicaSet on our cluster and the our httpd pod is running. So we create the same Previous ReplicaSet.
@@ -117,7 +118,7 @@ web-uin9j   1/1     Running             0          5m
 ```
 Now, The situation is that we have 2 pods running Nginx, and one pod running apache. The ReplicaSet is handling 3 pods
 
-![Creating pod before statefulset](images/create-pod-before-statefulset.png)
+<img src="images/create-pod-before-statefulset.png" style="width:900px">
 
 If the Apache pod fails or is deleted, the ReplicaSet would replace it with the Nginx pod, and everything will be okay as suspected
 
