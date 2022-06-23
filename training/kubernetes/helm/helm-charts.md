@@ -185,8 +185,140 @@ pullPolicy: "Always"
 storage: "s3"
 ```
 
+NOTES:
+
+- The default values file included inside of a chart must be named `values.yaml`. But files specified on the command line can be named anything.
+- If the `--set` flag is used on`helm install` or `helm upgrade`, those values are simply converted to YAML on the client side.
+
+## Scope, Dependencies, and Values
+
+docs: [https://helm.sh/docs/topics/charts/#scope-dependencies-and-values]
+
+## Global Values
+
+docs: [https://helm.sh/docs/topics/charts/#global-values]
+
+## Schema Files
+
+Sometimes, a chart maintainer might want to define a structure on their values.
+
+This can be done by defining a schema in the `values.schema.json` file.
+
+A schema is represented as a JSON Schema. It might look something like this:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "properties": {
+    "image": {
+      "description": "Container Image",
+      "properties": {
+        "repo": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "name": {
+      "description": "Service name",
+      "type": "string"
+    },
+    "port": {
+      "description": "Port",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "protocol": {
+      "type": "string"
+    }
+  },
+  "required": ["protocol", "port"],
+  "title": "Values",
+  "type": "object"
+}
+```
+
+This schema will be applied to the values to validate it. Validation occurs when any of the following commands are invoked:
+
+- `helm install`
+- `helm upgrade`
+- `helm lint`
+- `helm template`
+
 # Chart LICENSE, README and NOTES
 
+Charts can also contain files that describe the installation, configuration, usage and license of a chart.
+
+- A **LICENSE** is a plain text file containing the license for the chart. The chart can contain a license as it may have programming logic in the templates and would therefore not be configuration only. There can also be separate license(s) for the application installed by the chart, if required.
+
+- A **README** for a chart should be formatted in Markdown (README.md), and should generally contain:
+
+  - A description of the application or service the chart provides
+  - Any prerequisites or requirements to run the chart
+  - Descriptions of options in `values.yaml` and default values
+  - Any other information that may be relevant to the installation or configuration of the chart
+
+- The chart can also contain a short plain text **templates/NOTES**.txt file that will be printed out after installation, and when viewing the status of a release.
+  This file is evaluated as a template, and can be used to display usage notes, next steps, or any other information relevant to a release of the chart. For example, instructions could be provided for connecting to a database, or accessing a web UI.
+
 # Chart Dependencies (charts/ directory)
+
+In Helm, one chart may depend on any number of other charts.
+
+These dependencies can be dynamically linked using the `dependencies` field in `Chart.yaml` or brought in to the `charts/` directory and managed manually.
+
+## Managing Dependencies with the `dependencies` field
+
+The charts required by the current chart are defined as a list in the `dependencies` field.
+
+```yaml
+dependencies:
+  - name: apache
+    version: 1.2.3
+    repository: https://example.com/charts
+  - name: mysql
+    version: 3.2.1
+    repository: https://another.example.com/charts
+```
+
+- The `name` field is the name of the chart you want.
+- The `version` field is the version of the chart you want.
+- The `repository` field is the full URL to the chart repository. _Note that you must also use helm repo add to add that repo locally._
+- You might use the name of the repo instead of URL
+
+Once you have defined dependencies, you can `run helm dependency update` and it will use your dependency file to download all the specified charts into your `charts/` directory for you.
+
+When `helm dependency update` retrieves charts, it will store them as chart **archives** in the `charts/` directory. So for the example above, one would expect to see the following files in the charts directory:
+
+```
+charts/
+  apache-1.2.3.tgz
+  mysql-3.2.1.tgz
+```
+
+### Alias field in dependencies:
+
+In addition to the other fields above, each requirements entry may contain the optional field `alias`.
+
+Adding an alias for a dependency chart would put a chart in dependencies using alias as name of new dependency.
+
+Example in docs: [https://helm.sh/docs/topics/charts/#alias-field-in-dependencies]
+
+### Tags and Condition fields in dependencies:
+
+In addition to the other fields above, each requirements entry may contain the optional fields `tags` and `condition`.
+
+All charts are loaded by default. If `tags` or `condition` fields are present, they will be evaluated and used to control loading for the chart(s) they are applied to.
+
+docs for more: [https://helm.sh/docs/topics/charts/#tags-and-condition-fields-in-dependencies]
+
+## Managing Dependencies manually via the `charts/` directory
+
+If more control over dependencies is desired, these dependencies can be expressed explicitly by copying the dependency charts into the `charts/` directory.
+
+docs for more: [https://helm.sh/docs/topics/charts/#managing-dependencies-manually-via-the-charts-directory]
 
 _ref: [Chart Docs](https://helm.sh/docs/topics/charts/)_
