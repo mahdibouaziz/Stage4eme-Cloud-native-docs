@@ -79,31 +79,31 @@ By default, Kubernetes uses the Container Runtime Interface (CRI) to interface w
 
 You must install the Docker Engine on each node! 
 
-######1- Set up the repository 
+##### 1- Set up the repository 
 ```bash
 justk8s@justk8s-master:~$ sudo apt update
 justk8s@justk8s-master:~$ sudo apt install ca-certificates curl gnupg lsb-releases
 ```
-######2- Add Docker's official GPG key
+##### 2- Add Docker's official GPG key
 ```bash
 justk8s@justk8s-master:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
-######3- Add the stable repository using the following command:
+##### 3- Add the stable repository using the following command:
 ```bash
 justk8s@justk8s-master:~$ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-######4- Install the docker container
+##### 4- Install the docker container
 ```bash
 justk8s@justk8s-master:~$ sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io -y
 ``` 
 
-######5- Make sure that the docker will work on system startup
+##### 5- Make sure that the docker will work on system startup
 ```bash
 justk8s@justk8s-master:~$ sudo systemctl enable --now docker 
 ```
-######6- Configuring Cgroup Driver:  
+##### 6- Configuring Cgroup Driver:  
 The Cgroup Driver must be configured to let the kubelet process work correctly
 ```bash
 justk8s@justk8s-master:~$ cat <<EOF | sudo tee /etc/docker/daemon.json
@@ -117,7 +117,7 @@ justk8s@justk8s-master:~$ cat <<EOF | sudo tee /etc/docker/daemon.json
 }
 EOF
 ```
-######7- Restart the docker service to make sure the new configuration is applied
+##### 7- Restart the docker service to make sure the new configuration is applied
 ```bash
 justk8s@justk8s-master:~$ sudo systemctl daemon-reload && sudo systemctl restart docker
 ```
@@ -137,7 +137,7 @@ justk8s@justk8s-master:~$ echo "deb [signed-by=/usr/share/keyrings/kubernetes-ar
 justk8s@justk8s-master:~$ sudo apt update && sudo apt install -y kubelet=1.23.1-00 kubectl=1.23.1-00 kubeadm=1.23.1-00
 ```
 
-### Initializing the control-plane node
+## Initializing the control-plane node
 At this point, we have 3 nodes with docker, `kubeadm`, `kubelet`, and `kubectl` installed. Now we must initialize the Kubernetes master, which will manage the whole cluster and the pods running within the cluster `kubeadm init` by specifiy the address of the master node and the ipv4 address pool of the pods 
 
 ```bash
@@ -155,13 +155,13 @@ justk8s@justk8s-master:~$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 #### Installing Calico CNI 
 Calico provides network and network security solutions for containers. Calico is best known for its performance, flexibility and power. Use-cases: Calico can be used within a lot of Kubernetes platforms (kops, Kubespray, docker enterprise, etc.) to block or allow traffic between pods, namespaces
 
-###### 1- Install Tigera Calico operator
+##### 1- Install Tigera Calico operator
 ``` bash 
 justk8s@justk8s-master:~$ kubectl create -f "https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml"
 ```
 The Tigera Operator is a Kubernetes operator which manages the lifecycle of a Calico or Calico Enterprise installation on Kubernetes. Its goal is to make installation, upgrades, and ongoing lifecycle management of Calico and Calico Enterprise as simple and reliable as possible.
 
-###### 2- Download the custom-resources.yaml manifest and change it 
+##### 2- Download the custom-resources.yaml manifest and change it 
 The Calico has a default pod's CIDR value. But in our example, we set the  `--pod-netwokr-cidr=10.1.0.0/16`. So we must change the value of pod network CIDR in `custom-resources.yaml`
 
 ``` bash 
@@ -220,7 +220,7 @@ kube-system        kube-scheduler-master                      1/1     Running   
 tigera-operator    tigera-operator-7d8c9d4f67-j5b2g           1/1     Running   2 (103s ago)    4min
 ```
 
-### Join the worker nodes
+## Join the worker nodes
 Now our cluster is ready to work! let's join the worker nodes to this cluster by getting the token from the master node 
 ``` bash
 justk8s@justk8s-master:~$ sudo kubeadm token create --print-join-command
