@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: orphan
+    labels:
+        web-app: front-end
+spec:
+    containers:
+    - name: orphan
+      image: httpd
