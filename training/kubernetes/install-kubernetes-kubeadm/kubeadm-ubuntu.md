@@ -260,3 +260,14 @@ justk8s-master    Ready      control-plane,master   40m5s  v1.23.1
 justk8s-worker1   Ready      <none>                 3m7s   v1.23.1
 justk8s-worker2   Ready      <none>                 2m3s   v1.23.1
 ```
+
+
+
+
+##### References:
+*Kubernetes Documentation: [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)*
+
+*Calico Documentation: [Install Calico Networking for on-premises deployments](https://projectcalico.docs.tigera.io/getting-started/kubernetes/self-managed-onprem/onpremises)*
+
+*Docker Documentation: [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)*
+
