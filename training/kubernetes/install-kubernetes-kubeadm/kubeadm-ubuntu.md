@@ -65,8 +65,10 @@ justk8s@justk8s-worker1:~$ sudo ufw allow 30000:32767/tcp
 ``` bash
 justk8s@justk8s-master:~$ sudo ufw status
 Status: active
+
 justk8s@justk8s-master:~$ sudo ufw disable
 Firewall stopped and disabled on system startup
+
 justk8s@justk8s-master:~$ sudo ufw status
 Status: inactive
 ```
