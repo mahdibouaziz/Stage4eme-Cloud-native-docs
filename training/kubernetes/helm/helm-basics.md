@@ -47,6 +47,10 @@ To keep track of a release's state, or to re-read configuration information.
 
 `helm status [release name]`
 
+If you want to download and look at the files for a published chart, without installing it, you can do so with:
+
+`helm pull [chartrepo/chartname]`
+
 _Ref: [https://helm.sh/docs/intro/using_helm/#helm-install-installing-a-package](https://helm.sh/docs/intro/using_helm/#helm-install-installing-a-package)_
 
 ## Customizing the Chart before installing
