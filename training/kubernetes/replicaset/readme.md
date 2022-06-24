@@ -1,10 +1,10 @@
 
-# Statefulsets 
-## What is Statefulsets
+# ReplicaSet 
+## What is ReplicaSet
 A ReplicaSet is a process that runs multiple instances of a Pod and keeps the specified number of Pods constant. Its purpose is to maintain the specified number of Pod instances running in a cluster at any given time to prevent users from losing access to their application when a Pod fails or is inaccessible. 
 
 In order for a ReplicaSet to work, it needs to know which pods it will manage so that it can restart the failing ones or kill the unneeded. It also requires understanding how to create new pods from scratch in case it needs to spawn new ones.
-### How Statefulsets Works 
+### How ReplicaSet Works 
 A ReplicaSet uses labels to match the pods that it will manage. It also needs to check whether the target pod is already managed by another controller When you create a pod with the same tag/label that matches the ReplicaSet you created, the ReplicaSet will have full control of it
 
 Example of ReplicaSet manifest that use Nginx image
