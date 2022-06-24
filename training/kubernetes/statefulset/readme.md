@@ -99,7 +99,7 @@ web-wslvk   1/1     Running             0          25m
 The pod is being terminated by the ReplicaSet because the controller has more pods than it was configured to handle. So, it is killing the excess one.
 <center>
 <img src="images/create-pod-after-statefulset.png" style="width:900px">
-<center>
+</center>
 
 #### Create the Pod Before the ReplicaSet
 Lets assume that we don't have any ReplicaSet on our cluster and the our httpd pod is running. So we create the same Previous ReplicaSet.
