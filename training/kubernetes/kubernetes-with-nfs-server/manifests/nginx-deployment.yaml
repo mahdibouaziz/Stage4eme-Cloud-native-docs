@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+    labels:
+        role: webserver
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            role: webserver
+    template:
+        metadata:
+            labels:
+                role: webserver
+        spec:
+            containers:
+            - name: frontend
+              image: nginx  # we use wrong image for the demo !
+              ports:
+                - name: nginx-port
+                  containerPort: 80
+              volumeMounts:
+                - name: nfs
+                  mountPath: /usr/share/nginx/html
+            volumes:
+            - name: nfs
+              persistentVolumeClaim:
+                claimName: pvc-nfs
