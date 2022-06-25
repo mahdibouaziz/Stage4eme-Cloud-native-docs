@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-sts
+spec:
+    serviceName: "postgres-headless"
+    replicas: 3
+    selector:
+        matchLabels:
+            app: postgres-sts
+    template:
+        metadata:
+            labels:
+                app: postgres-sts
+        spec:
+            containers:
+            - name: postgres
+              image: postgres
+              ports:
+                - containerPort: 5432
+              env:
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                        name: database-secret
+                        key: postgres-pass
+                - name: POSTGRES_USER
+                  valueFrom:
+                    configMapKeyRef:
+                        name: config-map
+                        key: postgres-user
+                - name: POSTGRES_DBNAME
+                  valueFrom:
+                    configMapKeyRef:
+                        name: config-map
+                        key: postgres-db
+                - name: PGDATA
+                  value: /var/lib/postgresql/data/pgdata
+              volumeMounts:
+              - name: postgres-data
+                mountPath: /var/lib/postgresql/data/
+    volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        storageClassName: manual
+        accessModes:
+            - ReadWriteOnce
+        resources:
+            requests:
+                storage: 200Mi
