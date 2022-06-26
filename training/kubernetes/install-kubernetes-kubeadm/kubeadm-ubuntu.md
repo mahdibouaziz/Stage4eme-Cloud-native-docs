@@ -141,7 +141,7 @@ justk8s@justk8s-master:~$ sudo apt update && sudo apt install -y kubelet=1.23.1-
 At this point, we have 3 nodes with docker, `kubeadm`, `kubelet`, and `kubectl` installed. Now we must initialize the Kubernetes master, which will manage the whole cluster and the pods running within the cluster `kubeadm init` by specifiy the address of the master node and the ipv4 address pool of the pods 
 
 ```bash
-justk8s@justk8s-master:~$ sudo kubedm init --apiserver-advertise-address=192.168.1.18/24 --pod-network-cidr=10.1.0.0/16
+justk8s@justk8s-master:~$ sudo kubeadm init --apiserver-advertise-address=192.168.1.18 --pod-network-cidr=10.1.0.0/16
 ```
 You should wait a few minutes until the initialization is completed. The first initialization will take a lot of time if your connexion speed is slow (pull the images of the cluster components)
 
