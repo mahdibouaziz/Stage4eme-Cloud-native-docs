@@ -165,7 +165,7 @@ The Tigera Operator is a Kubernetes operator which manages the lifecycle of a Ca
 The Calico has a default pod's CIDR value. But in our example, we set the  `--pod-netwokr-cidr=10.1.0.0/16`. So we must change the value of pod network CIDR in `custom-resources.yaml`
 
 ``` bash 
-justk8s@justk8s-master:~$ wget  "https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml"
+justk8s@justk8s-master:~$ wget  "https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml"
 ```
 Now we edit this file before create the Calico pods
 
