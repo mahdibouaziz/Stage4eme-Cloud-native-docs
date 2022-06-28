@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: justk8s-gym
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gym
+  template:
+    metadata:
+      labels:
+        app: gym
+    spec:
+      containers:
+      - name: gym-app
+        image: mohamedrafraf/k8s-gym
+        ports:
+        - containerPort: 80

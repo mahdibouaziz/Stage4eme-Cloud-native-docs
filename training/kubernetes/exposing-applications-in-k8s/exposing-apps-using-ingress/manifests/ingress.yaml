@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: ingress-justk8s
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: justk8s.k8s
+    http:
+      paths:
+      - path: /kitchen
+        pathType: Prefix
+        backend:
+          service:
+            name: kitchen-svc
+            port:
+              number: 80
+      - path: /gym
+        pathType: Prefix
+        backend:
+          service:
+            name: gym-svc
+            port:
+              number: 80

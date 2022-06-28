@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: justk8s-kitchen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kitchen
+  template:
+    metadata:
+      labels:
+        app: kitchen
+    spec:
+      containers:
+      - name: kitchen-app
+        image: mohamedrafraf/k8s-kitchen
+        ports:
+        - containerPort: 80
