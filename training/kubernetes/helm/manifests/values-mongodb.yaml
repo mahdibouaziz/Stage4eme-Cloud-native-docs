@@ -1,0 +1,6 @@
+architecture: standalone
+replicaCount: 1
+persistence:
+  existingClaim: "pvc-mongodb"
+auth:
+  rootPassword: secret-root-pwd

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mongodb
+spec:
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs
+  nfs:
+    server: 192.168.56.81 # the IP address of nfsserver host host
+    path: "/mnt/nfs-data" # the location where to mount in the nfs server
