@@ -14,9 +14,12 @@ The most common used Ingress controllerfor Kubernetes is `Ingress Nginx`
 ## Ingress in cloud Vs Ingress in bare metal cluster
 Deploying Ingress pn managed Kubernetes cluster provided in cloud easier than in bare metal cluster. Because the Ingress Controller must be exposed as LoadBlancer! 
 
-In traditional cloud environments, where network load balancers are available on-demand, a single Kubernetes manifest suffices to provide a single point of contact to the NGINX Ingress controller to external clients and, indirectly, to any application running inside the cluster. 
+In traditional cloud environments, where network load balancers are available on-demand, a single Kubernetes manifest suffices to provide a single point of contact to the NGINX Ingress controller to external clients and, indirectly, to any application running inside the cluster.
+ 
 ![](images/cloud-LB.jpg) 
+
 Bare-metal environments lack this commodity, requiring a slightly different setup to offer the same kind of access to external consumers. So we need an aproach to solve this problem !
+
 ![](images/problem-LB.jpg)
 
 ## Create Load Balancer / Proxy for bare metal cluster
