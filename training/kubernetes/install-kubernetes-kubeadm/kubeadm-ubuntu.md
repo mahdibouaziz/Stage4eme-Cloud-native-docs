@@ -86,7 +86,8 @@ justk8s@justk8s-master:~$ sudo apt install ca-certificates curl gnupg lsb-releas
 ```
 ##### 2- Add Docker's official GPG key
 ```bash
-justk8s@justk8s-master:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+justk8s@justk8s-master:~$ sudo mkdir -p /etc/apt/keyrings
+justk8s@justk8s-master:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 ```
 ##### 3- Add the stable repository using the following command:
 ```bash
