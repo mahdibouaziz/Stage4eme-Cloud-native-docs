@@ -82,7 +82,7 @@ You must install the Docker Engine on each node!
 ##### 1- Set up the repository 
 ```bash
 justk8s@justk8s-master:~$ sudo apt update
-justk8s@justk8s-master:~$ sudo apt install ca-certificates curl gnupg lsb-releases
+justk8s@justk8s-master:~$ sudo apt install ca-certificates curl gnupg lsb-release
 ```
 ##### 2- Add Docker's official GPG key
 ```bash
