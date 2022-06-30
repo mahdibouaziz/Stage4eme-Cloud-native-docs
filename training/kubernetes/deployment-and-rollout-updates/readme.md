@@ -65,7 +65,7 @@ deployment.apps/nginx-deployment scaled
 you can setup an autoscaler for your Deployment and choose the minimum and maximum number of Pods you want to run based on the CPU utilization of your existing Pods:
 ``` bash
 justk8s@justk8s-master:~$  kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
-deployment.apps/nginx-deployment scaled
+horizontalpodautoscaler.autoscaling/nginx-deployment autoscaled
 ```
 #### Updating a Deployment 
 You can update the Deployment either by using the `kubectl set image` command or by `kubectl edit` command. In our previous example we choose the wrong container image (apache), So we must change it to nginx image
