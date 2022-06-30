@@ -64,7 +64,7 @@ deployment.apps/nginx-deployment scaled
 ```
 you can setup an autoscaler for your Deployment and choose the minimum and maximum number of Pods you want to run based on the CPU utilization of your existing Pods:
 ``` bash
-justk8s@justk8s-master:~$  kubectl scale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
+justk8s@justk8s-master:~$  kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
 deployment.apps/nginx-deployment scaled
 ```
 #### Updating a Deployment 
