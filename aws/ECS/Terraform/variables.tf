@@ -1,8 +1,7 @@
 #################### GLOBAL #####################
 
 variable "region" {
-  type    = string
-  default = ""
+  type = string
 }
 
 #################### NETWORKING #####################
@@ -10,12 +9,12 @@ variable "region" {
 variable "networking" {
   # type    = any # TODO - Change this type later
   type = object({
-    
+
     vpc = object({
-      name=string
-      cidr_block=string
-      enable_dns_hostnames=bool
-      enable_dns_support=bool
+      name                 = string
+      cidr_block           = string
+      enable_dns_hostnames = bool
+      enable_dns_support   = bool
     })
 
     public-subnets = map(
@@ -24,8 +23,8 @@ variable "networking" {
         map_public_ip_on_launch = bool
       })
     )
-    
-    route-table-name = string 
+
+    route-table-name = string
 
     # If ommited, we'll not have an internet gateway
     internet-gateway-name = optional(string)
