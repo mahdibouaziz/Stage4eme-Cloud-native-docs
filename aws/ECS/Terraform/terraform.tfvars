@@ -30,3 +30,6 @@ networking = {
   internet-gateway-name = "ecs-ig"
 
 }
+
+
+#################### ECS Cluster #####################

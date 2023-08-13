@@ -1,3 +1,5 @@
+#################### NETWORKING #####################
+
 module "networking" {
   source = "./modules/networking"
 
@@ -23,3 +25,5 @@ output "vpc-id" {
 output "subnet-ids" {
   value = module.networking.public-subnet-ids
 }
+
+#################### ECS Cluster #####################
